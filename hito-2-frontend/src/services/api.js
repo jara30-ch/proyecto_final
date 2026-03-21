@@ -1,4 +1,4 @@
-const API_URL = "https://proyecto-final-backend-ykdh.onrender.com"
+const API_URL = "https://proyecto-final-backend-ykdh.onrender.com/api"
 
 // --------------------- Productos ---------------------
 
