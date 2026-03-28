@@ -15,9 +15,9 @@ const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
 
-    const existing = cart.find((item) => item.id === product.id)
+    const existingProduct = cart.find((item) => item.id === product.id)
 
-    if (existing) {
+    if (existingProduct) {
 
       const updatedCart = cart.map((item) =>
         item.id === product.id
@@ -35,8 +35,8 @@ const CartProvider = ({ children }) => {
   }
 
   const removeFromCart = (id) => {
-    const newCart = cart.filter((item) => item.id !== id)
-    setCart(newCart)
+    const updatedCart = cart.filter((item) => item.id !== id)
+    setCart(updatedCart)
   }
 
   const increaseQuantity = (id) => {
@@ -65,6 +65,7 @@ const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([])
+    localStorage.removeItem("cart")
   }
 
   const totalPrice = cart.reduce(

@@ -1,12 +1,51 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { CartContext } from "../context/CartContext"
+import { Link } from "react-router-dom"
 
 const Checkout = () => {
 
-  const { cart, totalPrice } = useContext(CartContext)
+  const { cart, totalPrice, clearCart } = useContext(CartContext)
+
+  const [orderCompleted, setOrderCompleted] = useState(false)
+  const [orderNumber, setOrderNumber] = useState(null)
 
   const shipping = 2990
   const finalTotal = totalPrice + shipping
+
+  const handlePurchase = () => {
+
+    const generatedOrder = Math.floor(Math.random() * 1000000)
+
+    setOrderNumber(generatedOrder)
+    setOrderCompleted(true)
+
+    clearCart()
+  }
+
+  if (orderCompleted) {
+    return (
+
+      <div className="container mt-5 text-center">
+
+        <h2 className="text-success mb-3">
+          Compra realizada con éxito
+        </h2>
+
+        <p>
+          Tu número de orden es:
+        </p>
+
+        <h3 className="mb-4">
+          #{orderNumber}
+        </h3>
+
+        <Link to="/tienda" className="btn btn-primary">
+          Volver a la tienda
+        </Link>
+
+      </div>
+    )
+  }
 
   return (
 
@@ -24,22 +63,22 @@ const Checkout = () => {
 
             <div className="mb-3">
               <label className="form-label">Nombre</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" required />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Correo</label>
-              <input type="email" className="form-control" />
+              <input type="email" className="form-control" required />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Dirección</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" required />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Ciudad</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" required />
             </div>
 
           </form>
@@ -48,7 +87,7 @@ const Checkout = () => {
 
         <div className="col-md-6">
 
-          <div className="border p-4 rounded">
+          <div className="border p-4 rounded shadow-sm">
 
             <h4>Resumen</h4>
 
@@ -95,7 +134,10 @@ const Checkout = () => {
 
             </div>
 
-            <button className="btn btn-success w-100 mt-3">
+            <button
+              onClick={handlePurchase}
+              className="btn btn-success w-100 mt-3"
+            >
               Confirmar compra
             </button>
 
@@ -106,7 +148,6 @@ const Checkout = () => {
       </div>
 
     </div>
-
   )
 }
 
