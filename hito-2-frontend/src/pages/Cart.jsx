@@ -13,7 +13,7 @@ const Cart = () => {
 
   return (
 
-    <div className=" mt-4">
+    <div className="mt-4 container">
 
       <h2>Carrito</h2>
 
@@ -29,7 +29,7 @@ const Cart = () => {
             >
 
               <img
-                src={item.img}
+                src={item.image}
                 alt={item.name}
                 width="80"
                 className="me-3"
@@ -39,7 +39,7 @@ const Cart = () => {
 
                 <h5>{item.name}</h5>
 
-                <p>${item.price.toLocaleString()}</p>
+                <p>${Number(item.price).toLocaleString("es-CL")}</p>
 
               </div>
 
@@ -74,7 +74,7 @@ const Cart = () => {
 
           ))}
 
-          <h3>Total: ${totalPrice.toLocaleString()}</h3>
+          <h3>Total: ${Number(totalPrice).toLocaleString("es-CL")}</h3>
 
         </>
       )}

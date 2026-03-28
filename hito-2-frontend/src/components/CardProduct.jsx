@@ -18,6 +18,17 @@ const CardProduct = ({ product }) => {
   const precio = Number(product.precio || product.price || 0)
   const categoria = product.category || product.categoria || "Sin categoría"
 
+  const handleAddToCart = () => {
+    const productNormalized = {
+      id: product.id,
+      name: nombre,
+      image: imagen,
+      price: precio
+    }
+
+    addToCart(productNormalized)
+  }
+
   return (
 
     <div className="card m-3" style={{ width: "18rem" }}>
@@ -58,7 +69,7 @@ const CardProduct = ({ product }) => {
 
           <button
             className="btn btn-primary"
-            onClick={() => addToCart(product)}
+            onClick={handleAddToCart}
           >
             Agregar
           </button>
