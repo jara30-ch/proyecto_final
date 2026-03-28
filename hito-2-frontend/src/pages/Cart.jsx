@@ -132,9 +132,9 @@ const Cart = () => {
 
               </div>
 
-              <button className="btn btn-success w-100 mb-2">
-                Ir a pagar
-              </button>
+              <Link to="/checkout" className="btn btn-success w-100 mb-2">
+  Ir a pagar
+</Link>
 
               <Link to="/shop" className="btn btn-outline-dark w-100">
                 Seguir comprando

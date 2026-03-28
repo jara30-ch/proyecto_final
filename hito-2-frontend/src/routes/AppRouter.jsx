@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Cart from "../pages/Cart";
 import Profile from "../pages/Profile";
+import Checkout from "../pages/Checkout"
 
 const AppRouter = () => {
 
