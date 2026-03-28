@@ -10,38 +10,40 @@ import Register from "./pages/Register"
 import Cart from "./pages/Cart"
 import ProductDetail from "./pages/ProductDetail"
 import Profile from "./pages/Profile"
-import CreateProduct from "./pages/CreateProduct";
-
-
+import CreateProduct from "./pages/CreateProduct"
+import Checkout from "./pages/Checkout"
 
 function App() {
   return (
     <>
       <Navbar />
 
-       <div className="main-content">
+      <div className="main-content">
 
-      <Routes>
+        <Routes>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/galeria" element={<Gallery />} />
+          <Route path="/galeria" element={<Gallery />} />
 
-        <Route path="/tienda" element={<Shop />} />
+          <Route path="/tienda" element={<Shop />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/carrito" element={<Cart />} />
+          <Route path="/carrito" element={<Cart />} />
 
-        <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/checkout" element={<Checkout />} />
 
-        <Route path="/profile" element={<Profile />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
 
-        <Route path="/crear-producto" element={<CreateProduct />} />
+          <Route path="/profile" element={<Profile />} />
 
-      </Routes>
+          <Route path="/crear-producto" element={<CreateProduct />} />
+
+        </Routes>
+
       </div>
 
       <Footer />
