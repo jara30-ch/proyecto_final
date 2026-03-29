@@ -39,6 +39,9 @@ const Login = () => {
       // guardar usuario
       localStorage.setItem("usuario", JSON.stringify(response.usuario))
 
+      // cargar carrito del usuario si existe
+const savedCart = localStorage.getItem(`cart_${response.usuario.id}`)
+
       alert("Login exitoso")
 
       navigate("/profile")

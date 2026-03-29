@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
 
-  const { cart } = useContext(CartContext);
+ const { cart, clearCart } = useContext(CartContext);
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -25,14 +25,16 @@ const Navbar = () => {
 
   const handleLogout = () => {
 
-    localStorage.removeItem("token")
-    localStorage.removeItem("usuario")
+  clearCart()
 
-    setUsuario(null)
+  localStorage.removeItem("token")
+  localStorage.removeItem("usuario")
 
-    navigate("/")
+  setUsuario(null)
 
-  }
+  navigate("/")
+
+}
 
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0)
 
