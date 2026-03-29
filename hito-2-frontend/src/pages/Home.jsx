@@ -46,9 +46,9 @@ const Home = () => {
             Los mejores juguetes para aprender y divertirse
           </p>
 
-          <a href="/tienda" className="btn btn-warning btn-lg">
+          <Link to="/tienda" className="btn btn-warning btn-lg">
             Ver tienda
-          </a>
+          </Link>
 
         </div>
 
