@@ -9,16 +9,34 @@ const CartProvider = ({ children }) => {
     return usuario ? `cart_${usuario.id}` : "cart_guest"
   }
 
-  const [cart, setCart] = useState(() => {
+  const loadCartFromStorage = () => {
     const cartKey = getUserCartKey()
     const savedCart = localStorage.getItem(cartKey)
     return savedCart ? JSON.parse(savedCart) : []
-  })
+  }
 
+  const [cart, setCart] = useState(loadCartFromStorage)
+
+  // guardar carrito
   useEffect(() => {
     const cartKey = getUserCartKey()
     localStorage.setItem(cartKey, JSON.stringify(cart))
   }, [cart])
+
+  // detectar cambio de usuario (login / logout)
+  useEffect(() => {
+
+    const handleStorageChange = () => {
+      setCart(loadCartFromStorage())
+    }
+
+    window.addEventListener("storage", handleStorageChange)
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange)
+    }
+
+  }, [])
 
   const addToCart = (product) => {
 
@@ -71,9 +89,7 @@ const CartProvider = ({ children }) => {
   }
 
   const clearCart = () => {
-    const cartKey = getUserCartKey()
     setCart([])
-    localStorage.removeItem(cartKey)
   }
 
   const totalPrice = cart.reduce(
