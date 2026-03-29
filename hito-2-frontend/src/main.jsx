@@ -1,24 +1,20 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import App from "./App"
-import { BrowserRouter } from "react-router-dom"
-import { CartProvider } from "./context/CartContext"
-import { LikesProvider } from "./context/LikesContext"
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import CartProvider from './context/CartContext'
+import { LikesProvider } from './context/LikesContext'
+import './index.css'
+import App from './App.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-
-  <BrowserRouter>
-
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <CartProvider>
-
       <LikesProvider>
-
-        <App />
-
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </LikesProvider>
-
     </CartProvider>
-
-  </BrowserRouter>
-
+  </StrictMode>,
 )
