@@ -27,7 +27,7 @@ const Cart = () => {
 
           <h4>Tu carrito está vacío</h4>
 
-          <Link to="/shop" className="btn btn-primary mt-3">
+          <Link to="/tienda" className="btn btn-primary mt-3">
             Ir a la tienda
           </Link>
 
@@ -136,7 +136,7 @@ const Cart = () => {
   Ir a pagar
 </Link>
 
-              <Link to="/shop" className="btn btn-outline-dark w-100">
+              <Link to="/tienda" className="btn btn-outline-dark w-100">
                 Seguir comprando
               </Link>
 
