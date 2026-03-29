@@ -30,6 +30,8 @@ const Navbar = () => {
   localStorage.removeItem("token")
   localStorage.removeItem("usuario")
 
+   window.dispatchEvent(new Event("userChanged"))
+
   setUsuario(null)
 
   navigate("/")

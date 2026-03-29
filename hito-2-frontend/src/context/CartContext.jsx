@@ -9,13 +9,13 @@ const CartProvider = ({ children }) => {
     return usuario ? `cart_${usuario.id}` : "cart_guest"
   }
 
-  const loadCartFromStorage = () => {
+  const loadCart = () => {
     const cartKey = getUserCartKey()
     const savedCart = localStorage.getItem(cartKey)
     return savedCart ? JSON.parse(savedCart) : []
   }
 
-  const [cart, setCart] = useState(loadCartFromStorage)
+  const [cart, setCart] = useState(loadCart)
 
   // guardar carrito
   useEffect(() => {
@@ -23,17 +23,17 @@ const CartProvider = ({ children }) => {
     localStorage.setItem(cartKey, JSON.stringify(cart))
   }, [cart])
 
-  // detectar cambio de usuario (login / logout)
+  // recargar carrito cuando cambia el usuario
   useEffect(() => {
 
-    const handleStorageChange = () => {
-      setCart(loadCartFromStorage())
+    const handleUserChange = () => {
+      setCart(loadCart())
     }
 
-    window.addEventListener("storage", handleStorageChange)
+    window.addEventListener("userChanged", handleUserChange)
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange)
+      window.removeEventListener("userChanged", handleUserChange)
     }
 
   }, [])
@@ -106,7 +106,6 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        setCart,
         addToCart,
         removeFromCart,
         increaseQuantity,

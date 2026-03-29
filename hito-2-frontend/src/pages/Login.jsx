@@ -38,6 +38,7 @@ const Login = () => {
 
       // guardar usuario
       localStorage.setItem("usuario", JSON.stringify(response.usuario))
+      window.dispatchEvent(new Event("userChanged"))
 
       // cargar carrito del usuario si existe
 const savedCart = localStorage.getItem(`cart_${response.usuario.id}`)
