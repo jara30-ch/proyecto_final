@@ -1,16 +1,12 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
+import { LikesContext } from "../context/LikesContext"
 import { Link } from "react-router-dom"
 
 const CardProduct = ({ product }) => {
 
   const { addToCart } = useContext(CartContext)
-
-  const [liked, setLiked] = useState(false)
-
-  const handleLike = () => {
-    setLiked(!liked)
-  }
+  const { likes, toggleLike } = useContext(LikesContext)
 
   // compatibilidad backend / json
   const nombre = product.nombre || product.name
@@ -18,7 +14,10 @@ const CardProduct = ({ product }) => {
   const precio = Number(product.precio || product.price || 0)
   const categoria = product.category || product.categoria || "Sin categoría"
 
+  const isLiked = likes.some(p => p.id === product.id)
+
   const handleAddToCart = () => {
+
     const productNormalized = {
       id: product.id,
       name: nombre,
@@ -27,6 +26,20 @@ const CardProduct = ({ product }) => {
     }
 
     addToCart(productNormalized)
+
+  }
+
+  const handleLike = () => {
+
+    const productNormalized = {
+      id: product.id,
+      name: nombre,
+      image: imagen,
+      price: precio
+    }
+
+    toggleLike(productNormalized)
+
   }
 
   return (
@@ -54,15 +67,17 @@ const CardProduct = ({ product }) => {
           style={{ cursor: "pointer", userSelect: "none" }}
           onClick={handleLike}
         >
+
           <span
             style={{
-              color: liked ? "red" : "gray",
+              color: isLiked ? "red" : "gray",
               fontSize: "1.3rem",
               marginRight: "5px"
             }}
           >
             ♥
           </span>
+
         </div>
 
         <div className="d-flex gap-2">

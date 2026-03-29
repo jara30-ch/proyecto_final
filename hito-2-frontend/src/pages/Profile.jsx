@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { LikesContext } from "../context/LikesContext"
+import CardProduct from "../components/CardProduct"
 
 const Profile = () => {
 
   const [usuario, setUsuario] = useState(null)
+
+  const { likes } = useContext(LikesContext)
 
   useEffect(() => {
 
@@ -22,7 +26,7 @@ const Profile = () => {
 
     <div className="container mt-5">
 
-      <div className="card p-4 shadow">
+      <div className="card p-4 shadow mb-4">
 
         <h2 className="mb-4">Perfil de usuario</h2>
 
@@ -38,8 +42,38 @@ const Profile = () => {
 
       </div>
 
-    </div>
+      <div>
 
+        <h3 className="mb-3">
+
+          Productos que te gustaron ❤️ ({likes.length})
+
+        </h3>
+
+        <div className="d-flex flex-wrap justify-content-center">
+
+          {likes.length === 0 ? (
+
+            <p>Aún no has dado like a productos</p>
+
+          ) : (
+
+            likes.map(product => (
+
+              <CardProduct
+                key={product.id}
+                product={product}
+              />
+
+            ))
+
+          )}
+
+        </div>
+
+      </div>
+
+    </div>
   )
 }
 
