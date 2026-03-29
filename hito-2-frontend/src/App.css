@@ -64,3 +64,7 @@
 .gallery-card img:hover{
   transform:scale(1.05);
 }
+
+.gallery-card{
+  overflow:hidden;
+}
