@@ -40,7 +40,6 @@
 .read-the-docs {
   color: #888;
 }
-
 .gallery-container{
   padding:40px;
   text-align:center;
@@ -48,23 +47,19 @@
 
 .gallery-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  grid-template-columns:repeat(3,1fr);
   gap:20px;
-  margin-top:30px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.gallery-card{
+  width:100%;
 }
 
 .gallery-card img{
   width:100%;
-  height:250px;
+  height:200px;
   object-fit:cover;
   border-radius:10px;
-  transition:0.3s;
-}
-
-.gallery-card img:hover{
-  transform:scale(1.05);
-}
-
-.gallery-card{
-  overflow:hidden;
 }
