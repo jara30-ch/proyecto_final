@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="container">
 
         <Link className="navbar-brand" to="/">
-          Juguetería
+          Potencia Mentes
         </Link>
 
         <div className="navbar-nav">
