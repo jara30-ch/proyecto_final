@@ -6,13 +6,43 @@ const Checkout = () => {
 
   const { cart, totalPrice, clearCart } = useContext(CartContext)
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+    city: ""
+  })
+
+  const [error, setError] = useState("")
   const [orderCompleted, setOrderCompleted] = useState(false)
   const [orderNumber, setOrderNumber] = useState(null)
 
   const shipping = 2990
   const finalTotal = totalPrice + shipping
 
+  const handleChange = (e) => {
+
+    const { name, value } = e.target
+
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
   const handlePurchase = () => {
+
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.address ||
+      !formData.city
+    ) {
+      setError("Debes completar todos los datos antes de confirmar la compra.")
+      return
+    }
+
+    setError("")
 
     const generatedOrder = Math.floor(Math.random() * 1000000)
 
@@ -23,6 +53,7 @@ const Checkout = () => {
   }
 
   if (orderCompleted) {
+
     return (
 
       <div className="container mt-5 text-center">
@@ -31,9 +62,7 @@ const Checkout = () => {
           Compra realizada con éxito
         </h2>
 
-        <p>
-          Tu número de orden es:
-        </p>
+        <p>Tu número de orden es:</p>
 
         <h3 className="mb-4">
           #{orderNumber}
@@ -63,22 +92,46 @@ const Checkout = () => {
 
             <div className="mb-3">
               <label className="form-label">Nombre</label>
-              <input type="text" className="form-control" required />
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                value={formData.name}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Correo</label>
-              <input type="email" className="form-control" required />
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Dirección</label>
-              <input type="text" className="form-control" required />
+              <input
+                type="text"
+                name="address"
+                className="form-control"
+                value={formData.address}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="mb-3">
               <label className="form-label">Ciudad</label>
-              <input type="text" className="form-control" required />
+              <input
+                type="text"
+                name="city"
+                className="form-control"
+                value={formData.city}
+                onChange={handleChange}
+              />
             </div>
 
           </form>
@@ -133,6 +186,12 @@ const Checkout = () => {
               </strong>
 
             </div>
+
+            {error && (
+              <div className="alert alert-danger mt-3">
+                {error}
+              </div>
+            )}
 
             <button
               onClick={handlePurchase}
