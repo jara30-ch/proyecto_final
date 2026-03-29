@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import CardProduct from "../components/CardProduct"
 import { getProducts } from "../services/api"
+import { Link } from "react-router-dom"
 
 const Home = () => {
 
